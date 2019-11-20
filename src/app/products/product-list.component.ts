@@ -11,8 +11,10 @@ export class ProductList {
     imageMargin: number = 1;
     showImage: boolean = false;
     filteredProducts: IProduct[];
-
-    _listFilter: string = 'cart';
+    constructor() {
+      this.filteredProducts = this.products;
+    }
+    _listFilter: string;
     get listFilter(): string
     {
       return this._listFilter;
@@ -82,10 +84,13 @@ export class ProductList {
       }
 
       performFilter(filterBy: string) : IProduct[] {
-        filterBy =filterBy.toLowerCase();
+        filterBy = filterBy.toLowerCase();
         return this.products.filter((product: IProduct) =>
           product.productName.toLowerCase().indexOf(filterBy) !== -1
         );
+      }
+      OnRatingClicked(message: string) : void {
+        this.pageTitle = message;
       }
 
 
